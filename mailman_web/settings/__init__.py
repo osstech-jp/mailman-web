@@ -14,10 +14,10 @@ load_settings(__name__, ['/etc/mailman-web.toml', '/etc/mailman3/mailman-web.tom
 try:
     SECRET_KEY
 except NameError:
-    if not os.path.exists(SECRET_FILE):
+    if os.path.exists(SECRET_FILE):
+        with open(SECRET_FILE) as fd:
+            SECRET_KEY = fd.read().strip()
+    else:
         print('Please create a {} file with random characters'
               ' to generate your secret key!'.format(SECRET_FILE))
         print('You can run "$ dd if=/dev/urandom bs=100 count=1|base64 > secret.txt"')
-        exit(1)
-    with open(SECRET_FILE) as fd:
-        SECRET_KEY = fd.read().strip()
