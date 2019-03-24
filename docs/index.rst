@@ -40,6 +40,8 @@ A basic configuration can look like this:
 
 .. literalinclude:: mailman-web-example.toml
 
+
+You can see a list of all the default configurations supported:
 .. toctree::
    :maxdepth: 2
 
