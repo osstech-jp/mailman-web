@@ -74,16 +74,18 @@ COMPRESS_PRECOMPILERS = (
 #: Please also note that extra configuration is required after
 #: a provider is enabled. Django-allauth's documentation mentioned
 #: above provides more details about how to configure one.
-#: DJANGO_SOCIAL_AUTH_PROVIDERS = [
-#:     'allauth.socialaccount.providers.openid',
-#:     'django_mailman3.lib.auth.fedora',
-#:     'allauth.socialaccount.providers.github',
-#:     'allauth.socialaccount.providers.gitlab',
-#:     'allauth.socialaccount.providers.google',
-#:     'allauth.socialaccount.providers.facebook',
-#:     'allauth.socialaccount.providers.twitter',
-#:     'allauth.socialaccount.providers.stackexchange',
-#: ]
+#: Example::
+#:
+#:     DJANGO_SOCIAL_AUTH_PROVIDERS = [
+#:         'allauth.socialaccount.providers.openid',
+#:         'django_mailman3.lib.auth.fedora',
+#:         'allauth.socialaccount.providers.github',
+#:         'allauth.socialaccount.providers.gitlab',
+#:         'allauth.socialaccount.providers.google',
+#:         'allauth.socialaccount.providers.facebook',
+#:         'allauth.socialaccount.providers.twitter',
+#:         'allauth.socialaccount.providers.stackexchange',
+#:     ]
 DJANGO_SOCIAL_AUTH_PROVERS = []
 
 
