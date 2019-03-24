@@ -25,6 +25,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_UNIQUE_EMAIL  = True
+
 #: Protocol for URLs generated for authentication, like email
 #: confirmation.
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
@@ -67,6 +68,25 @@ COMPRESS_PRECOMPILERS = (
 )
 
 
+#: Enabled Social Authentication Providers that can be used to
+#: authenticate with. A full list of providers can be found at
+#: https://django-allauth.readthedocs.io/en/latest/providers.html
+#: Please also note that extra configuration is required after
+#: a provider is enabled. Django-allauth's documentation mentioned
+#: above provides more details about how to configure one.
+#: DJANGO_SOCIAL_AUTH_PROVIDERS = [
+#:     'allauth.socialaccount.providers.openid',
+#:     'django_mailman3.lib.auth.fedora',
+#:     'allauth.socialaccount.providers.github',
+#:     'allauth.socialaccount.providers.gitlab',
+#:     'allauth.socialaccount.providers.google',
+#:     'allauth.socialaccount.providers.facebook',
+#:     'allauth.socialaccount.providers.twitter',
+#:     'allauth.socialaccount.providers.stackexchange',
+#: ]
+DJANGO_SOCIAL_AUTH_PROVERS = []
+
+
 #
 # Social auth
 #
@@ -101,8 +121,6 @@ Q_CLUSTER = {
     'save_limit': 100,
     'orm': 'default',
 }
-
-
 
 #: On a production setup, setting COMPRESS_OFFLINE to True will bring a
 #: significant performance improvement, as CSS files will not need to be

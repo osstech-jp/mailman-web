@@ -21,3 +21,8 @@ except NameError:
         print('Please create a {} file with random characters'
               ' to generate your secret key!'.format(SECRET_FILE))
         print('You can run "$ dd if=/dev/urandom bs=100 count=1|base64 > secret.txt"')
+
+
+#: Add social accounts to Django's INSTALLED_APPS so that they can be enabled
+#: for use.
+INSTALLED_APPS.extend(DJANGO_SOCIAL_AUTH_PROVERS)
