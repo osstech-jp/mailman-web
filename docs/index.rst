@@ -14,25 +14,11 @@ To install ``mailman-web`` using ``pip`` run the following command::
 
   $ pip install mailman-web
 
-
 ========
 Settings
 ========
 
-.. automodule:: mailman_web.settings.base
-    :members:
-    :ignore-module-all:
-    :undoc-members:
+.. toctree::
+   :maxdepth: 2
 
-.. automodule:: mailman_web.settings.mailman
-    :members:
-    :ignore-module-all:
-    :undoc-members:
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-   
+   settings
