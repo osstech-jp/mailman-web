@@ -14,9 +14,31 @@ To install ``mailman-web`` using ``pip`` run the following command::
 
   $ pip install mailman-web
 
+
+=====
+Usage
+=====
+
+To run Django's development server, you can try::
+
+  $ DJANGO_SETTINGS_MODULE=mailman_web.settings django-admin migrate
+  $ DJANGO_SETTINGS_MODULE=mailman_web.settings django-admin runserver
+
 ========
 Settings
 ========
+
+Mailman Web can be customized using a TOML configuration file called
+``mailman-web.toml``. The default locations where this configuration is
+searched for (in order):
+
+  - ``/etc/mailman-web.toml``
+  - ``/etc/mailman3/mailman-web.toml``
+  - ``./mailman-web.toml``
+
+A basic configuration can look like this:
+
+.. literalinclude:: mailman-web-example.toml
 
 .. toctree::
    :maxdepth: 2
