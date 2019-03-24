@@ -28,7 +28,8 @@ To run Django's development server, you can try::
 Settings
 ========
 
-Mailman Web can be customized using a TOML configuration file called
+Mailman Web can be customized using a `TOML configuration
+<https://github.com/maxking/django-settings-toml>`_ file called
 ``mailman-web.toml``. The default locations where this configuration is
 searched for (in order):
 
@@ -40,9 +41,10 @@ A basic configuration can look like this:
 
 .. literalinclude:: mailman-web-example.toml
 
-
 You can see a list of all the default configurations supported:
+
 .. toctree::
    :maxdepth: 2
 
    settings
+
