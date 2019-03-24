@@ -1,8 +1,9 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
+#: The base directory for logs and database.
+BASE_DIR = str(Path.cwd())
 
 #: Default list of admins who receive the emails from error logging.
 ADMINS = (
@@ -15,7 +16,16 @@ ALLOWED_HOSTS = [
     "localhost",  # Archiving API from Mailman, keep it.
     # "lists.your-domain.org",
     # Add here all production URLs you may have.
+    "*",
 ]
+
+#: Enable Development Mode.
+DEBUG = False
+
+
+#: URL Configuration for Django
+ROOT_URLCONF = 'mailman_web.urls'
+
 
 #: Default list of django applications.
 INSTALLED_APPS = [
@@ -48,7 +58,6 @@ MIDDLEWARE = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -83,7 +92,7 @@ TEMPLATES = [
 
 #: Wsgi application import path. This will be used by the WSGI server which
 #: will be used to deploy this application.
-WSGI_APPLICATION = 'mailman_suite.wsgi.application'
+WSGI_APPLICATION = 'mailman_web.wsgi.application'
 
 #: Default Database to be used.
 DATABASES = {
@@ -186,6 +195,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
+
 #: Default Logging configuration.
 LOGGING = {
     'version': 1,
@@ -247,3 +257,20 @@ LOGGING = {
     #    'level': 'INFO',
     #},
 }
+
+
+# This is merely to setup logging if it isn't defined.
+log_path =  Path(LOGGING['handlers']['file']['filename'])
+if not log_path.exists():
+    log_path.parent.mkdir(exist_ok=True)
+    log_path.touch()
+
+#: Current Django Site being served. This is used to customize the web host
+#: being used to serve the current website. For more details about Django
+#: site, see: https://docs.djangoproject.com/en/dev/ref/contrib/sites/
+SITE_ID = 1
+
+
+#: SECRET_FILE contains the secret key to be used for Django's session and
+#: token encryptions.
+SECRET_FILE = os.path.join(BASE_DIR, 'secret.txt')

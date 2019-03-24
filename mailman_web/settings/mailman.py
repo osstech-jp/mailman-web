@@ -13,6 +13,8 @@ MAILMAN_ARCHIVER_KEY = 'SecretArchiverAPIKey'
 #: for archiving.
 MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
 
+#: Filter visible Mailing Lists based on the current host being used to serve.
+FILTER_VHOST = False
 
 #: Sender in Emails sent out by Postorius.
 DEFAULT_FROM_EMAIL = 'postorius@localhost'

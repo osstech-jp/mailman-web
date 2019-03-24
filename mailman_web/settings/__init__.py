@@ -1,7 +1,23 @@
+import os
+
 from mailman_web.settings.base import *
 from mailman_web.settings.mailman import *
 
 from django_settings_toml import load_settings
 
 
-load_settings(__name__, ['/etc/mailman-web.toml', '/etc/mailman3/mailman-web.toml', 'mailman-web.toml'])
+load_settings(__name__, ['/etc/mailman-web.toml', '/etc/mailman3/mailman-web.toml', './mailman-web.toml'])
+
+
+# If the SECRET_KEY variable is defined, we don't need to do anything, but if
+# it is not, we try to read it from SECRET_FILE.
+try:
+    SECRET_KEY
+except NameError:
+    if not os.path.exists(SECRET_FILE):
+        print('Please create a {} file with random characters'
+              ' to generate your secret key!'.format(SECRET_FILE))
+        print('You can run "$ dd if=/dev/urandom bs=100 count=1|base64 > secret.txt"')
+        exit(1)
+    with open(SECRET_FILE) as fd:
+        SECRET_KEY = fd.read().strip()
