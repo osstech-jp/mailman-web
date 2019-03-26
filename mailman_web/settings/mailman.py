@@ -86,6 +86,10 @@ COMPRESS_PRECOMPILERS = (
 #:         'allauth.socialaccount.providers.twitter',
 #:         'allauth.socialaccount.providers.stackexchange',
 #:     ]
+#:
+#: ``DJANGO_SOCIAL_AUTH``_PROVIDERS are added to ``INSTALLED_APPS``, so you
+#: don't need to add them. If you want to disable social login, set this to an
+#: empty list ``[]``.
 DJANGO_SOCIAL_AUTH_PROVERS = []
 
 
