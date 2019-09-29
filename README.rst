@@ -15,7 +15,7 @@ Install
 
 To install this project, you run::
 
-  $ pip3 install mailman-web
+  $ pip install mailman-web
 
 If you want to install the latest development version from Git, run::
 

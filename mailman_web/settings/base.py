@@ -16,7 +16,6 @@ ALLOWED_HOSTS = [
     "localhost",  # Archiving API from Mailman, keep it.
     # "lists.your-domain.org",
     # Add here all production URLs you may have.
-    "*",
 ]
 
 #: Enable Development Mode.
@@ -215,7 +214,7 @@ LOGGING = {
             'level': 'INFO',
             #'class': 'logging.handlers.RotatingFileHandler',
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'mailmansuite.log'),
+            'filename': os.path.join(BASE_DIR, 'logs', 'mailmanweb.log'),
             'formatter': 'verbose',
         },
         'console': {
@@ -262,7 +261,7 @@ LOGGING = {
 # This is merely to setup logging if it isn't defined.
 log_path =  Path(LOGGING['handlers']['file']['filename'])
 if not log_path.exists():
-    log_path.parent.mkdir(exist_ok=True)
+    log_path.parent.mkdir(exist_ok=True, parents=True)
     log_path.touch()
 
 #: Current Django Site being served. This is used to customize the web host
@@ -271,6 +270,4 @@ if not log_path.exists():
 SITE_ID = 1
 
 
-#: SECRET_FILE contains the secret key to be used for Django's session and
-#: token encryptions.
-SECRET_FILE = os.path.join(BASE_DIR, 'secret.txt')
+SECRET_KEY = os.environ['SECRET_KEY']
