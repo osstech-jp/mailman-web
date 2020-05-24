@@ -21,25 +21,15 @@ Usage
 
 To run Django's development server, you can try::
 
-  $ DJANGO_SETTINGS_MODULE=mailman_web.settings django-admin migrate
-  $ DJANGO_SETTINGS_MODULE=mailman_web.settings django-admin runserver
+  $ mailman-web migrate
+  $ mailman-web runserver
 
 ========
 Settings
 ========
 
-Mailman Web can be customized using a `TOML configuration
-<https://github.com/maxking/django-settings-toml>`_ file called
-``mailman-web.toml``. The default locations where this configuration is
-searched for (in order):
-
-  - ``/etc/mailman-web.toml``
-  - ``/etc/mailman3/mailman-web.toml``
-  - ``./mailman-web.toml``
-
-A basic configuration can look like this:
-
-.. literalinclude:: mailman-web-example.toml
+Mailman Web can be customized using a configuration file at
+``/etc/mailman3/settings.py``
 
 You can see a list of all the default configurations supported:
 
@@ -47,4 +37,3 @@ You can see a list of all the default configurations supported:
    :maxdepth: 2
 
    settings
-
