@@ -268,6 +268,3 @@ if not log_path.exists():
 #: being used to serve the current website. For more details about Django
 #: site, see: https://docs.djangoproject.com/en/dev/ref/contrib/sites/
 SITE_ID = 1
-
-
-SECRET_KEY = os.environ['SECRET_KEY']
