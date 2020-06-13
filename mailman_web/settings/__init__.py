@@ -15,9 +15,11 @@ _CONFIG = os.environ.get('MAILMAN_WEB_CONFIG', _ADDITIONAL_CONFIG)
 #: Set the secret key if not already set.
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# Load extra configuration from Config file.
-if os.path.exists(_CONFIG):
-    print(f'Loading Django settings from {_CONFIG}')
-    with open(_CONFIG) as fd:
-        code = compile(fd.read(), _CONFIG, "exec")
-        exec(code)
+# Load extra configuration from Config file if mailman-web is the default
+# settings module, otherwise, skip loading up the extra stuff.
+if os.environ.get('DJANGO_SETTINGS_MODULE') == 'mailman_web.settings':
+    if os.path.exists(_CONFIG):
+        print(f'Loading Django settings from {_CONFIG}')
+        with open(_CONFIG) as fd:
+            code = compile(fd.read(), _CONFIG, "exec")
+            exec(code)
