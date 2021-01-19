@@ -37,3 +37,12 @@ You can see a list of all the default configurations supported:
    :maxdepth: 2
 
    settings
+
+
+Important Links
+===============
+
+* Issue Tracker: https://gitlab.com/mailman/mailman-web/issues
+* Documentation: https://mailman-web.readthedocs.io/
+* Mailman Suite: https://docs.mailman3.org/
+* Mailman Project: https://list.org
