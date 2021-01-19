@@ -8,8 +8,6 @@ Mailman 3 Web Interface. It consists of the following sub-projects:
 * Postorius
 * Hyperkitty
 
-
-=======
 Install
 =======
 
@@ -19,12 +17,9 @@ To install this project, you run::
 
 If you want to install the latest development version from Git, run::
 
-  $ git clone git@gitlab.com:mailman/mailman-web
-  $ cd mailman-web
-  $ pip install .
+  $ pip install git+https://gitlab.com/mailman/mailman-web
 
 
-=======
 License
 =======
 

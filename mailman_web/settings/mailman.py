@@ -20,7 +20,7 @@ FILTER_VHOST = False
 DEFAULT_FROM_EMAIL = 'postorius@localhost'
 
 
-# Django Allauth
+#: Django Allauth
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -28,7 +28,7 @@ ACCOUNT_UNIQUE_EMAIL  = True
 
 #: Protocol for URLs generated for authentication, like email
 #: confirmation.
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 SOCIALACCOUNT_PROVIDERS = {
     'openid': {
@@ -57,12 +57,10 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-#
-# django-compressor
-# https://pypi.python.org/pypi/django_compressor
-#
+
+#: django-compressor
+#: https://pypi.python.org/pypi/django_compressor
 COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
     ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
     ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
 )
@@ -87,13 +85,12 @@ COMPRESS_PRECOMPILERS = (
 #:         'allauth.socialaccount.providers.stackexchange',
 #:     ]
 #:
-#: ``DJANGO_SOCIAL_AUTH``_PROVIDERS are added to ``INSTALLED_APPS``, so you
+#: ``DJANGO_SOCIAL_AUTH_PROVIDERS`` are added to ``INSTALLED_APPS``, so you
 #: don't need to add them. If you want to disable social login, set this to an
 #: empty list ``[]``.
 DJANGO_SOCIAL_AUTH_PROVERS = []
 
 
-#
 # Social auth
 #
 #: Authentication backends for Django to be used.
@@ -118,7 +115,7 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-#
+
 # Asynchronous tasks
 #
 #: Django Q connection parameters.
