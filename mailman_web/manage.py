@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
+from pathlib import Path
 
 #: Default configuration path for Mailman Web.
 MAILMAN_WEB_CONFIG = '/etc/mailman3/settings.py'

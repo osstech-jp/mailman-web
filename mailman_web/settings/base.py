@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 #: The base directory for logs and database.
-BASE_DIR = Path('/opt/mailman3/web')
+BASE_DIR = Path('/opt/mailman/web')
 
 #: Default list of admins who receive the emails from error logging.
 ADMINS = (
