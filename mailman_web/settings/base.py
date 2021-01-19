@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 #: The base directory for logs and database.
-BASE_DIR = str(Path.cwd())
+BASE_DIR = Path('/opt/mailman3/web')
 
 #: Default list of admins who receive the emails from error logging.
 ADMINS = (
@@ -256,13 +256,6 @@ LOGGING = {
     #    'level': 'INFO',
     #},
 }
-
-
-# This is merely to setup logging if it isn't defined.
-log_path =  Path(LOGGING['handlers']['file']['filename'])
-if not log_path.exists():
-    log_path.parent.mkdir(exist_ok=True, parents=True)
-    log_path.touch()
 
 #: Current Django Site being served. This is used to customize the web host
 #: being used to serve the current website. For more details about Django
