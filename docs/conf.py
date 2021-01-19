@@ -20,7 +20,7 @@ import pprint
 # -- Project information -----------------------------------------------------
 
 project = 'Mailman Web'
-copyright = '2019, Mailman Developers'
+copyright = '2021, Mailman Developers'
 author = 'Mailman Developers'
 
 # The short X.Y version
