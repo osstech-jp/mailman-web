@@ -15,14 +15,6 @@ To install ``mailman-web`` using ``pip`` run the following command::
   $ pip install mailman-web
 
 
-Usage
-=====
-
-To run Django's development server, you can try::
-
-  $ mailman-web migrate
-  $ mailman-web runserver
-
 Settings
 ========
 
@@ -41,6 +33,15 @@ You can see a list of all the default configurations supported:
    :maxdepth: 2
 
    settings
+
+
+Usage
+=====
+
+To run Django's development server, you can try::
+
+  $ mailman-web migrate
+  $ mailman-web runserver
 
 
 Important Links
