@@ -27,6 +27,27 @@ ROOT_URLCONF = 'mailman_web.urls'
 
 
 #: Default list of django applications.
+#: Each social account provider is an application and by default no social auth
+#: providers are enabled. To enable a social auth provider, you can add them
+#: to list of INSTALLED_APPS. For example::
+#:
+#:     DJANGO_SOCIAL_AUTH_PROVIDERS = [
+#:         'allauth.socialaccount.providers.openid',
+#:         'django_mailman3.lib.auth.fedora',
+#:         'allauth.socialaccount.providers.github',
+#:         'allauth.socialaccount.providers.gitlab',
+#:         'allauth.socialaccount.providers.google',
+#:         'allauth.socialaccount.providers.facebook',
+#:         'allauth.socialaccount.providers.twitter',
+#:         'allauth.socialaccount.providers.stackexchange',
+#:     ]
+#:     INSTALLED_APPS += DJANGO_SOCIAL_AUTH_PROVIDERS
+#:
+#: A full list of providers can be found at
+#: https://django-allauth.readthedocs.io/en/latest/providers.html
+#: Please also note that extra configuration is required after
+#: a provider is enabled. Django-allauth's documentation mentioned
+#: above provides more details about how to configure one.
 INSTALLED_APPS = [
     'hyperkitty',
     'postorius',
@@ -94,6 +115,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mailman_web.wsgi.application'
 
 #: Default Database to be used.
+#: Example for PostgreSQL (**recommanded for production**)::
+#:
+#:    'default': {
+#:        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#:        'NAME': 'database_name',
+#:        'USER': 'database_user',
+#:        'PASSWORD': 'database_password',
+#:        'HOST': 'localhost',
+#:    }
+#:
+#: For MySQL/MariaDB also add the following to the the configuration::
+#:
+#:     'OPTIONS': {'charset': 'utf8mb4'}  # Enable utf8 4-byte encodings.
+#:
+#: Check out
+#: `Django documentation <https://docs.djangoproject.com/en/3.0/ref/settings/#databases>`_
+#: for more details.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

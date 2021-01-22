@@ -13,6 +13,10 @@ MAILMAN_ARCHIVER_KEY = 'SecretArchiverAPIKey'
 #: for archiving.
 MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
 
+#: Base URL where Django/Mailman-web would be listening for requests. Used by
+#: Mailman Core for fetching templates.
+POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost:8000'
+
 #: Filter visible Mailing Lists based on the current host being used to serve.
 FILTER_VHOST = False
 
@@ -30,6 +34,10 @@ ACCOUNT_UNIQUE_EMAIL  = True
 #: confirmation.
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
+
+#: Extra configuration for Social auth. For these configuration to be used.
+#: each of the social account providers must be first added in INSTALLED_APPS.
+#: See :py:data:`mailman_web.settings.base.INSTALLED_APPS` for more configuration.
 SOCIALACCOUNT_PROVIDERS = {
     'openid': {
         'SERVERS': [
@@ -64,31 +72,6 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
     ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
 )
-
-
-#: Enabled Social Authentication Providers that can be used to
-#: authenticate with. A full list of providers can be found at
-#: https://django-allauth.readthedocs.io/en/latest/providers.html
-#: Please also note that extra configuration is required after
-#: a provider is enabled. Django-allauth's documentation mentioned
-#: above provides more details about how to configure one.
-#: Example::
-#:
-#:     DJANGO_SOCIAL_AUTH_PROVIDERS = [
-#:         'allauth.socialaccount.providers.openid',
-#:         'django_mailman3.lib.auth.fedora',
-#:         'allauth.socialaccount.providers.github',
-#:         'allauth.socialaccount.providers.gitlab',
-#:         'allauth.socialaccount.providers.google',
-#:         'allauth.socialaccount.providers.facebook',
-#:         'allauth.socialaccount.providers.twitter',
-#:         'allauth.socialaccount.providers.stackexchange',
-#:     ]
-#:
-#: ``DJANGO_SOCIAL_AUTH_PROVIDERS`` are added to ``INSTALLED_APPS``, so you
-#: don't need to add them. If you want to disable social login, set this to an
-#: empty list ``[]``.
-DJANGO_SOCIAL_AUTH_PROVERS = []
 
 
 # Social auth
