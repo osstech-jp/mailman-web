@@ -17,6 +17,11 @@ MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
 #: Mailman Core for fetching templates.
 POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost:8000'
 
+#: Use gravatar in HyperKitty and Postorius.
+#: If disabled django_gravatar can be removed from INSTALLED_APPS:
+#: INSTALLED_APPS.remove('django_gravatar')
+HYPERKITTY_ENABLE_GRAVATAR = True
+
 #: Filter visible Mailing Lists based on the current host being used to serve.
 FILTER_VHOST = False
 
