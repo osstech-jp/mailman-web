@@ -108,6 +108,7 @@ HAYSTACK_CONNECTIONS = {
 #
 #: Django Q connection parameters.
 Q_CLUSTER = {
+    'retry': 360,
     'timeout': 300,
     'save_limit': 100,
     'orm': 'default',
