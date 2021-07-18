@@ -20,6 +20,15 @@ If you want to install the latest development version from Git, run::
   $ pip install git+https://gitlab.com/mailman/mailman-web
 
 
+Project details
+===============
+
+* Project home: https://gitlab.com/mailman/mailman-web
+* Report bugs at: https://gitlab.com/mailman/mailman-web/-/issues
+* Documentation: https://mailman-web.readthedocs.io/en/latest/
+* Mailman Documentation: https://docs.mailman3.org
+
+
 License
 =======
 
