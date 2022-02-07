@@ -284,6 +284,11 @@ LOGGING = {
             'handlers': ['console', 'file'],
             'level': 'INFO',
         },
+        'q': {
+            'level': 'WARNING',
+            'propagate': False,
+            'handlers': ['console', 'file'],
+        },
     },
     'formatters': {
         'verbose': {
