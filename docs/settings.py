@@ -10,7 +10,7 @@ ADMINS = (
     ('Mailman Suite Admin', 'root@localhost'),
 )
 
-# Postgresql datbase setup.
+# Postgresql database setup.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
