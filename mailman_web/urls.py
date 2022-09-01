@@ -17,19 +17,19 @@
 # Postorius.  If not, see <http://www.gnu.org/licenses/>.
 
 
-from django.conf.urls import include, url
+from django.conf.urls import include
 from django.contrib import admin
-from django.urls import reverse_lazy
+from django.urls import path, reverse_lazy
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(
-        url=reverse_lazy('list_index'),
-        permanent=True)),
-    url(r'^mailman3/', include('postorius.urls')),
-    url(r'^archives/', include('hyperkitty.urls')),
-    url(r'', include('django_mailman3.urls')),
-    url(r'^accounts/', include('allauth.urls')),
-    # Django admin
-    url(r'^admin/', admin.site.urls),
+    path(
+        '',
+        RedirectView.as_view(url=reverse_lazy('list_index'), permanent=True),
+    ),
+    path('mailman3/', include('postorius.urls')),
+    path('archives/', include('hyperkitty.urls')),
+    path('', include('django_mailman3.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('admin/', admin.site.urls),
 ]

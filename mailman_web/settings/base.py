@@ -1,5 +1,6 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.contrib.messages import constants as messages
 from pathlib import Path
 
 #: The base directory for logs and database.
@@ -130,8 +131,9 @@ WSGI_APPLICATION = 'mailman_web.wsgi.application'
 #:     'OPTIONS': {'charset': 'utf8mb4'}  # Enable utf8 4-byte encodings.
 #:
 #: Check out
-#: `Django documentation <https://docs.djangoproject.com/en/3.0/ref/settings/#databases>`_
-#: for more details.
+#: `Django documentation
+#: <https://docs.djangoproject.com/en/3.0/ref/settings/#databases>`_ for
+#: more details.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -150,7 +152,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
-        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa: E501
     },
     {
         'NAME':
@@ -230,8 +232,6 @@ SERVER_EMAIL = 'root@localhost.local'
 #: https://docs.djangoproject.com/en/dev/topics/email/#email-backends
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# Compatibility with Bootstrap 3
-from django.contrib.messages import constants as messages  # flake8: noqa
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
@@ -252,9 +252,8 @@ LOGGING = {
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         },
-        'file':{
+        'file': {
             'level': 'INFO',
-            #'class': 'logging.handlers.RotatingFileHandler',
             'class': 'logging.handlers.WatchedFileHandler',
             'filename': os.path.join(BASE_DIR, 'logs', 'mailmanweb.log'),
             'formatter': 'verbose',
@@ -292,16 +291,12 @@ LOGGING = {
     },
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(process)d %(name)s %(message)s'
+            'format': '%(levelname)s %(asctime)s %(process)d %(name)s %(message)s'  # noqa: E501
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
         },
     },
-    #'root': {
-    #    'handlers': ['file'],
-    #    'level': 'INFO',
-    #},
 }
 
 #: Current Django Site being served. This is used to customize the web host

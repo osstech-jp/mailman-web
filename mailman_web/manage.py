@@ -3,12 +3,16 @@ import os
 import sys
 from pathlib import Path
 
+
 def setup():
     """Setup environment for Mailman web."""
     if os.getenv('DJANGO_SETTINGS_MODULE') is not None:
         return
 
-    MAILMAN_WEB_CONFIG = os.getenv('MAILMAN_WEB_CONFIG', '/etc/mailman3/settings.py')
+    MAILMAN_WEB_CONFIG = os.getenv(
+        'MAILMAN_WEB_CONFIG',
+        '/etc/mailman3/settings.py',
+    )
 
     if not os.path.exists(MAILMAN_WEB_CONFIG):
         print('Mailman web configuration file at {} does not exist'.format(
@@ -21,6 +25,7 @@ def setup():
     sys.path.append(str(config_path.parent))
 
     os.environ['DJANGO_SETTINGS_MODULE'] = config_path.stem
+
 
 def main():
     setup()
