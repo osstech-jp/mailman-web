@@ -1,5 +1,3 @@
-import os
-
 #: Mailman Core default API Path
 MAILMAN_REST_API_URL = 'http://localhost:8001'
 #: Mailman Core API user
@@ -33,7 +31,7 @@ DEFAULT_FROM_EMAIL = 'postorius@localhost'
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_UNIQUE_EMAIL  = True
+ACCOUNT_UNIQUE_EMAIL = True
 
 #: Protocol for URLs generated for authentication, like email
 #: confirmation.
@@ -42,7 +40,8 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 #: Extra configuration for Social auth. For these configuration to be used.
 #: each of the social account providers must be first added in INSTALLED_APPS.
-#: See :py:data:`mailman_web.settings.base.INSTALLED_APPS` for more configuration.
+#: See :py:data:`mailman_web.settings.base.INSTALLED_APPS` for more
+#: configuration.
 SOCIALACCOUNT_PROVIDERS = {
     'openid': {
         'SERVERS': [

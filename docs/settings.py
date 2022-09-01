@@ -1,8 +1,8 @@
 # Mailman Web configuration file.
 # /etc/mailman3/settings.py
 
-from mailman_web.settings.base import *
-from mailman_web.settings.mailman import *
+from mailman_web.settings.base import *  # noqa: F403
+from mailman_web.settings.mailman import *  # noqa: F403
 
 
 #: Default list of admins who receive the emails from error logging.
@@ -14,7 +14,7 @@ ADMINS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': ‘mailmanweb’,
+        'NAME': 'mailmanweb',
         'USER': '<db_username>',
         'PASSWORD': '<password>',
         'HOST': 'localhost',
@@ -28,7 +28,7 @@ STATIC_ROOT = '/opt/mailman/web/static'
 
 
 # Make sure that this directory is created or Django will fail on start.
-LOGGING['handlers']['file']['filename'] = '/opt/mailman/web/logs/mailmanweb.log'
+LOGGING['handlers']['file']['filename'] = '/opt/mailman/web/logs/mailmanweb.log'  # noqa: F405,E501
 
 #: See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
