@@ -6,7 +6,8 @@ from pathlib import Path
 
 def setup():
     """Setup environment for Mailman web."""
-    if os.getenv('DJANGO_SETTINGS_MODULE') is not None:
+    django_settings = os.getenv('DJANGO_SETTINGS_MODULE', None)
+    if django_settings is not None:
         return
 
     MAILMAN_WEB_CONFIG = os.getenv(
@@ -22,8 +23,9 @@ def setup():
         sys.exit(1)
 
     config_path = Path(MAILMAN_WEB_CONFIG).resolve()
-    sys.path.append(str(config_path.parent))
 
+    sys.path.append(str(config_path.parent))
+    os.environ['PYTHONPATH'] = str(config_path.parent)
     os.environ['DJANGO_SETTINGS_MODULE'] = config_path.stem
 
 
