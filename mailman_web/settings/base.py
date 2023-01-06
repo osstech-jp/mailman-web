@@ -208,11 +208,6 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-#: Django 1.6+ defaults to a JSON serializer, but it won't work with
-#: django-openid, see
-#: https://bugs.launchpad.net/django-openid-auth/+bug/1252826
-SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-
 
 #: Default Django URL to redirect to for Login.
 LOGIN_URL = 'account_login'
