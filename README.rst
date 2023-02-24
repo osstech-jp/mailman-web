@@ -20,6 +20,14 @@ If you want to install the latest development version from Git, run::
   $ pip install git+https://gitlab.com/mailman/mailman-web
 
 
+Changelog
+=========
+
+0.0.7
+~~~~~
+
+* [**BREAKING**] Reduce the default no. of workers for qrunner to 2. (Fixes #17)
+
 Project details
 ===============
 
