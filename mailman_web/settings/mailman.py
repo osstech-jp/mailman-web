@@ -111,6 +111,7 @@ Q_CLUSTER = {
     'timeout': 300,
     'save_limit': 100,
     'orm': 'default',
+    'workers': 2,
 }
 
 #: On a production setup, setting COMPRESS_OFFLINE to True will bring a
