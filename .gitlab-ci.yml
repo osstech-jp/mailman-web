@@ -9,3 +9,7 @@ docs:
 lint:
   script:
     - tox -e lint
+
+include:
+  - project: "dependabot-gitlab/dependabot-standalone"
+    file: ".gitlab-ci.yml"
