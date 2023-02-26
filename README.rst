@@ -27,6 +27,10 @@ Changelog
 ~~~~~
 
 * [**BREAKING**] Reduce the default no. of workers for qrunner to 2. (Fixes #17)
+* [**BREAKING**] Due to change in Django's ``SESSION_SERIALIZER``, it will cause
+  all existing sessions to cause 500 errors, unless they are removed from the
+  database. To do that, you can upgrade to django-mailman3 1.3.10, which will
+  remove all current sessions. (See !25)
 
 Project details
 ===============
