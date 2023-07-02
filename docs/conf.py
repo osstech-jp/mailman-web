@@ -17,6 +17,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import pprint
+
 # -- Project information -----------------------------------------------------
 
 project = 'Mailman Web'
@@ -185,7 +186,9 @@ epub_exclude_files = ['search.html']
 # -- Options for intersphinx extension ---------------------------------------
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+}
 
 # -- Options for todo extension ----------------------------------------------
 

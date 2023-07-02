@@ -17,7 +17,7 @@ To install this project, you run::
 
 If you want to install the latest development version from Git, run::
 
-  $ pip install git+https://gitlab.com/mailman/mailman-web
+  $ pip install mailman-web
 
 
 Changelog
