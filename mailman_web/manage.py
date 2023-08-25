@@ -20,13 +20,18 @@ def setup():
               MAILMAN_WEB_CONFIG), file=sys.stderr)
         print('Modify "MAILMAN_WEB_CONFIG" environment variable to point at '
               'settings.py', file=sys.stderr)
-        sys.exit(1)
+        if len(sys.argv) > 1 and sys.argv[1] == 'help':
+            os.environ['DJANGO_SETTINGS_MODULE'] = 'mailman_web.settings'
+            import mailman_web.settings
+            mailman_web.settings.SECRET_KEY = 'only_set_here_for_help_cmd'
+        else:
+            sys.exit(1)
+    else:
+        config_path = Path(MAILMAN_WEB_CONFIG).resolve()
 
-    config_path = Path(MAILMAN_WEB_CONFIG).resolve()
-
-    sys.path.append(str(config_path.parent))
-    os.environ['PYTHONPATH'] = str(config_path.parent)
-    os.environ['DJANGO_SETTINGS_MODULE'] = config_path.stem
+        sys.path.append(str(config_path.parent))
+        os.environ['PYTHONPATH'] = str(config_path.parent)
+        os.environ['DJANGO_SETTINGS_MODULE'] = config_path.stem
 
 
 def main():
