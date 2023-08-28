@@ -30,10 +30,31 @@ def setup():
             sys.exit(1)
     else:
         config_path = Path(MAILMAN_WEB_CONFIG).resolve()
-
-        sys.path.append(str(config_path.parent))
-        os.environ['PYTHONPATH'] = str(config_path.parent)
+        add_to_pythonpath(str(config_path.parent))
         os.environ['DJANGO_SETTINGS_MODULE'] = config_path.stem
+
+
+def add_to_pythonpath(value):
+    """Add the settings file's parent dir to Python's PATH."""
+    # Add to sys.path, so that the imports following after this
+    # method run will work.
+    sys.path.append(value)
+    # Finally, also add to PYTHONPATH so if there are any re-execs
+    # then it is carried over. It is found in Django commands that
+    # such things can occur.
+    existing_path = os.environ.get('PYTHONPATH')
+    if existing_path is None:
+        os.environ['PYTHONPATH'] = value
+        return
+    # If the PYTHONPATH has been set for some other reason
+    # not override it, instead append to it.
+    # os.pathsep is used for separating entries in PYTHONPATH, same as
+    # PATH.
+    os.environ['PYTHONPATH'] = f'{existing_path}{os.pathsep}{value}'
+    print(
+        'Updated PYTHONPATH to : {}'.format(os.environ.get('PYTHONPATH')),
+        file=sys.stderr
+        )
 
 
 def main():
