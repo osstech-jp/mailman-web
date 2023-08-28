@@ -1,5 +1,5 @@
 """Test basic server startup."""
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.contrib.auth.models import User
 
 
@@ -7,9 +7,10 @@ class SanityTestCase(TestCase):
 
     def setUp(self) -> None:
         super().setUp()
-        # self.client = Client()
-        self.su = User.objects.create_superuser('aperson', 'myemail@example.com', 'password')
-        self.user = User.objects.create_user('bperson', 'bee@example.com', 'password')
+        self.su = User.objects.create_superuser(
+            'aperson', 'myemail@example.com', 'password')
+        self.user = User.objects.create_user(
+            'bperson', 'bee@example.com', 'password')
 
     # def test_basic_postorius(self):
     #     response = self.client.get('/', follow=True)
