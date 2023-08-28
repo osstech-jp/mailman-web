@@ -34,6 +34,7 @@ Changelog
 * Add a new settings module ``mailman_web.settings.dev`` for development purposes.
   To use this, you can run ``export DJANGO_SETTINGS_MODULE=mailman_web.settings.dev``
   and then run ``mailman-web`` commands for dev purposes.
+* Min Python version has been upgraded to 3.9 since the same is required for Core.
 
 Project details
 ===============
