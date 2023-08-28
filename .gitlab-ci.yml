@@ -16,15 +16,15 @@ django32:
 
 django40:
   script:
-    - tox -e py311-dj32
+    - tox -e py311-dj40
 
 django41:
   script:
-    - tox -e py311-dj32
+    - tox -e py311-dj41
 
 django42:
   script:
-    - tox -e py311-dj32
+    - tox -e py311-dj42
 
 include:
   - project: "dependabot-gitlab/dependabot-standalone"
