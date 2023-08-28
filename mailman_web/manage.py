@@ -8,6 +8,8 @@ def setup():
     """Setup environment for Mailman web."""
     django_settings = os.getenv('DJANGO_SETTINGS_MODULE', None)
     if django_settings is not None:
+        # If the user has set DJANGO_SETTINGS_MODULE, then don't
+        # do anything and return.
         return
 
     MAILMAN_WEB_CONFIG = os.getenv(
@@ -19,7 +21,7 @@ def setup():
         print('Mailman web configuration file at {} does not exist'.format(
               MAILMAN_WEB_CONFIG), file=sys.stderr)
         print('Modify "MAILMAN_WEB_CONFIG" environment variable to point at '
-              'settings.py', file=sys.stderr)
+              'settings.py or set "DJANGO_SETTINGS_MODULE".', file=sys.stderr)
         if len(sys.argv) > 1 and sys.argv[1] == 'help':
             os.environ['DJANGO_SETTINGS_MODULE'] = 'mailman_web.settings'
             import mailman_web.settings

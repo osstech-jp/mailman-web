@@ -31,6 +31,9 @@ Changelog
   all existing sessions to cause 500 errors, unless they are removed from the
   database. To do that, you can upgrade to django-mailman3 1.3.10, which will
   remove all current sessions. (See !25)
+* Add a new settings module ``mailman_web.settings.dev`` for development purposes.
+  To use this, you can run ``export DJANGO_SETTINGS_MODULE=mailman_web.settings.dev``
+  and then run ``mailman-web`` commands for dev purposes.
 
 Project details
 ===============
