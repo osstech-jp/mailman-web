@@ -7,9 +7,18 @@ from pathlib import Path
 def setup():
     """Setup environment for Mailman web."""
     django_settings = os.getenv('DJANGO_SETTINGS_MODULE', None)
+    MAILMAN_WEB_CONFIG = os.getenv(
+        'MAILMAN_WEB_CONFIG',
+        '/etc/mailman3/settings.py',
+    )
     if django_settings is not None:
         # If the user has set DJANGO_SETTINGS_MODULE, then don't
         # do anything and return.
+        if os.path.exists(MAILMAN_WEB_CONFIG):
+            print('WARNING: "DJANGO_SETTINGS_MODULE" and "MAILMAN_WEB_CONFIG"'
+                  ' environment variables are both set. DJANGO_SETTINGS_MODULE'
+                  ' is being used and MAILMAN_WEB_CONFIG is ignored.',
+                  file=sys.stderr)
         return
 
     MAILMAN_WEB_CONFIG = os.getenv(

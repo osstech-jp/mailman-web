@@ -35,11 +35,13 @@ Changelog
   To use this, you can run ``export DJANGO_SETTINGS_MODULE=mailman_web.settings.dev``
   and then run ``mailman-web`` commands for dev purposes.
 * Min Python version has been upgraded to 3.9 since the same is required for Core.
+* Print a warning if a user sets both ``DJANGO_SETTINGS_MODULE`` and ``MAILMAN_WEB_CONFIG``
+  as the former overrides the latter. (Fixes #7)
 
 Fixes
 -----
 * Instead of overriding ``PYTHONPATH`` env var always, append to it if it has
-  already been defined.
+  already been defined. (Fixes #19)
 
 
 Project details
