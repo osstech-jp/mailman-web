@@ -10,6 +10,22 @@ lint:
   script:
     - tox -e lint
 
+django32:
+  script:
+    - tox -e py311-dj32
+
+django40:
+  script:
+    - tox -e py311-dj32
+
+django41:
+  script:
+    - tox -e py311-dj32
+
+django42:
+  script:
+    - tox -e py311-dj32
+
 include:
   - project: "dependabot-gitlab/dependabot-standalone"
     file: ".gitlab-ci.yml"
