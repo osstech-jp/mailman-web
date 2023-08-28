@@ -36,6 +36,12 @@ Changelog
   and then run ``mailman-web`` commands for dev purposes.
 * Min Python version has been upgraded to 3.9 since the same is required for Core.
 
+Fixes
+-----
+* Instead of overriding ``PYTHONPATH`` env var always, append to it if it has
+  already been defined.
+
+
 Project details
 ===============
 
