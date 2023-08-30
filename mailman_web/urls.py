@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright (C) 1998-2016 by the Free Software Foundation, Inc.
+# Copyright (C) 2023 by the Free Software Foundation, Inc.
 #
-# This file is part of Postorius.
+# This file is part of mailman-web.
 #
 # Postorius is free software: you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free
