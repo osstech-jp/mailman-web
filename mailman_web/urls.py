@@ -32,4 +32,7 @@ urlpatterns = [
     path('', include('django_mailman3.urls')),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
+    # Include alternate Postorius and HyperKitty URLs.
+    path('postorius/', include('postorius.urls')),
+    path('hyperkitty/', include('hyperkitty.urls')),
 ]
