@@ -23,8 +23,14 @@ If you want to install the latest development version from Git, run::
 Changelog
 =========
 
-0.0.7
-~~~~~
+0.0.8 (2023-10-22)
+~~~~~~~~~~~~~~~~~~
+
+* Bump min version dependency on django-mailman3, which will clear all existing
+  django sessions so that changes in session serializer doesn't cause errors.
+  
+0.0.7 (2023-10-21)
+~~~~~~~~~~~~~~~~~~
 
 * [**BREAKING**] Reduce the default no. of workers for qrunner to 2. (Fixes #17)
 * [**BREAKING**] Due to change in Django's ``SESSION_SERIALIZER``, it will cause
