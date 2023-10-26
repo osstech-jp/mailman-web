@@ -17,6 +17,7 @@
 # Postorius.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from django.conf import settings
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path, reverse_lazy
@@ -27,12 +28,11 @@ urlpatterns = [
         '',
         RedirectView.as_view(url=reverse_lazy('list_index'), permanent=True),
     ),
-    path('mailman3/', include('postorius.urls')),
-    path('archives/', include('hyperkitty.urls')),
+    path('mailman/', include('postorius.urls')),
     path('', include('django_mailman3.urls')),
     path('accounts/', include('allauth.urls')),
     path('admin/', admin.site.urls),
-    # Include alternate Postorius and HyperKitty URLs.
-    path('postorius/', include('postorius.urls')),
-    path('hyperkitty/', include('hyperkitty.urls')),
 ]
+
+if 'hyperkitty' in settings.INSTALLED_APPS:
+    urlpatterns.append(path('archives/', include('hyperkitty.urls')))

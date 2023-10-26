@@ -3,13 +3,24 @@ import os
 from django.contrib.messages import constants as messages
 from pathlib import Path
 
+import importlib.util
+
+PREFIX_DIR = Path('/opt/osstech')
+
+SYSCONF_DIR = os.path.join(PREFIX_DIR, 'etc/mailman-web')
+LOG_DIR = os.path.join(PREFIX_DIR, 'var/log/mailman-web')
+
 #: The base directory for logs and database.
-BASE_DIR = Path('/opt/mailman/web')
+BASE_DIR = os.path.join(PREFIX_DIR, 'var/lib/mailman-web')
 
 #: Default list of admins who receive the emails from error logging.
 ADMINS = (
     ('Mailman Suite Admin', 'root@localhost'),
 )
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
 
 #: Hosts/domain names that are valid for this site; required if DEBUG is False.
 #: See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
@@ -50,7 +61,6 @@ ROOT_URLCONF = 'mailman_web.urls'
 #: a provider is enabled. Django-allauth's documentation mentioned
 #: above provides more details about how to configure one.
 INSTALLED_APPS = [
-    'hyperkitty',
     'postorius',
     'django_mailman3',
     'django.contrib.admin',
@@ -61,7 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django_gravatar',
+    #'django_gravatar',
     'compressor',
     'haystack',
     'django_extensions',
@@ -105,16 +115,25 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django_mailman3.context_processors.common',
-                'hyperkitty.context_processors.common',
                 'postorius.context_processors.postorius',
             ],
         },
     },
 ]
 
+if importlib.util.find_spec('hyperkitty'):
+    INSTALLED_APPS.append('hyperkitty')
+    for template in TEMPLATES:
+        if 'django_mailman3.context_processors.common' in template['OPTIONS']['context_processors']:
+            template['OPTIONS']['context_processors'].append('hyperkitty.context_processors.common')
+
 #: Wsgi application import path. This will be used by the WSGI server which
 #: will be used to deploy this application.
 WSGI_APPLICATION = 'mailman_web.wsgi.application'
+
+# If you're behind a proxy, use the X-Forwarded-Host header
+# See https://docs.djangoproject.com/en/1.8/ref/settings/#use-x-forwarded-host
+USE_X_FORWARDED_HOST = True
 
 #: Default Database to be used.
 #: Example for PostgreSQL (**recommanded for production**)::
@@ -138,7 +157,7 @@ WSGI_APPLICATION = 'mailman_web.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'mailman-web.db'),
+        'NAME': os.path.join(BASE_DIR, 'data', 'mailman-web.sqlite'),
         'HOST': '',
         'PORT': '',
     }
@@ -170,7 +189,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 #: Default Language code.
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
 #: Default timezone.
 TIME_ZONE = 'UTC'
@@ -197,7 +216,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    # BASE_DIR + '/static/',
+    os.path.join(SYSCONF_DIR, 'static'),
 )
 
 #: List of finder classes that know how to find static files in
@@ -250,8 +269,9 @@ LOGGING = {
         },
         'file': {
             'level': 'INFO',
-            'class': 'logging.handlers.WatchedFileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs', 'mailmanweb.log'),
+            #'class': 'logging.handlers.WatchedFileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(LOG_DIR, 'mailman-web.log'),
             'formatter': 'verbose',
         },
         'console': {
@@ -262,27 +282,28 @@ LOGGING = {
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins', 'file'],
-            'level': 'ERROR',
+            'level': 'INFO',
             'propagate': True,
         },
         'django': {
             'handlers': ['file'],
-            'level': 'ERROR',
+            'level': 'INFO',
             'propagate': True,
         },
         'hyperkitty': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
         'postorius': {
-            'handlers': ['console', 'file'],
+            'handlers': ['file'],
             'level': 'INFO',
+            'propagate': True,
         },
         'q': {
             'level': 'WARNING',
             'propagate': False,
-            'handlers': ['console', 'file'],
+            'handlers': ['file'],
         },
     },
     'formatters': {

@@ -1,12 +1,12 @@
 #: Mailman Core default API Path
-MAILMAN_REST_API_URL = 'http://localhost:8001'
+MAILMAN_REST_API_URL = 'http+unix://%2Frun%2Fmailman%2Fhttp%2Fsocket'
 #: Mailman Core API user
 MAILMAN_REST_API_USER = 'restadmin'
 #: Mailman Core API user's password.
 MAILMAN_REST_API_PASS = 'restpass'
 #: Mailman Core Shared archiving key. This value is set in the :
 #: mailman-hyperkitty's configuration file.
-MAILMAN_ARCHIVER_KEY = 'SecretArchiverAPIKey'
+MAILMAN_ARCHIVER_KEY = 'apikey'
 #: Host for Mailman Core, from where Hyperkitty will accept connections
 #: for archiving.
 MAILMAN_ARCHIVER_FROM = ('127.0.0.1', '::1')
@@ -18,7 +18,7 @@ POSTORIUS_TEMPLATE_BASE_URL = 'http://localhost:8000'
 #: Use gravatar in HyperKitty and Postorius.
 #: If disabled django_gravatar can be removed from INSTALLED_APPS:
 #: INSTALLED_APPS.remove('django_gravatar')
-HYPERKITTY_ENABLE_GRAVATAR = True
+HYPERKITTY_ENABLE_GRAVATAR = False
 
 #: Filter visible Mailing Lists based on the current host being used to serve.
 FILTER_VHOST = False
@@ -72,10 +72,10 @@ SOCIALACCOUNT_PROVIDERS = {
 
 #: django-compressor
 #: https://pypi.python.org/pypi/django_compressor
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
-    ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
-)
+#COMPRESS_PRECOMPILERS = (
+#    ('text/x-scss', 'sassc -t compressed {infile} {outfile}'),
+#    ('text/x-sass', 'sassc -t compressed {infile} {outfile}'),
+#)
 
 
 # Social auth
@@ -93,7 +93,7 @@ AUTHENTICATION_BACKENDS = (
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': "fulltext_index",
+        'PATH': '/opt/osstech/var/lib/mailman-web/fulltext_index',
         # You can also use the Xapian engine, it's faster and more accurate,
         # but requires another library.
         # http://django-haystack.readthedocs.io/en/v2.4.1/installing_search_engines.html#xapian
@@ -112,6 +112,7 @@ Q_CLUSTER = {
     'save_limit': 100,
     'orm': 'default',
     'workers': 2,
+    'poll': 30,
 }
 
 #: On a production setup, setting COMPRESS_OFFLINE to True will bring a
@@ -119,7 +120,8 @@ Q_CLUSTER = {
 #: recompiled on each requests. It means running an additional "compress"
 #: management command after each code upgrade.
 #: http://django-compressor.readthedocs.io/en/latest/usage/#offline-compression
-COMPRESS_OFFLINE = True
+#: https://django-compressor.readthedocs.io/en/latest/usage.html#offline-compression
+COMPRESS_OFFLINE = False
 
 # Needed for debug mode
 # INTERNAL_IPS = ('127.0.0.1',)

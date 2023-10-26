@@ -25,7 +25,7 @@ def setup():
     django_settings = os.getenv('DJANGO_SETTINGS_MODULE', None)
     MAILMAN_WEB_CONFIG = os.getenv(
         'MAILMAN_WEB_CONFIG',
-        '/etc/mailman3/settings.py',
+        '/opt/osstech/etc/mailman-web/settings.py',
     )
     if django_settings is not None:
         # If the user has set DJANGO_SETTINGS_MODULE, then don't
@@ -36,11 +36,6 @@ def setup():
                   ' is being used and MAILMAN_WEB_CONFIG is ignored.',
                   file=sys.stderr)
         return
-
-    MAILMAN_WEB_CONFIG = os.getenv(
-        'MAILMAN_WEB_CONFIG',
-        '/etc/mailman3/settings.py',
-    )
 
     if not os.path.exists(MAILMAN_WEB_CONFIG):
         print('Mailman web configuration file at {} does not exist'.format(
